@@ -10,12 +10,19 @@ private:
 public:
     int c;
     int d;
+
+    static int e;
+    static int f;
+
     int addition(int p, int q)
     {
         return p + q;
     }
 };
 
+/*Every static data member needs to define once globally otherwise comipiler will throw error*/
+int Myclass::e = 90;
+int Myclass::f = 91;
 
 
 //Global variable, we will try to fetch its value in local
@@ -80,4 +87,29 @@ int main()
     objptr->d = 77;
     std::cout << "\nAccessing member through pointer objptr->*ptrtomember_d = " << objptr->*ptrtomember_d;
     std::cout << "\nMember function access (objptr->*fnptr)(4,9) = " << (objptr->*fnptr)(4,9);
+
+//-------------------------------------------------------------------------------------------------------------
+/*static members*/
+    std::cout << "\n\n\n\nStatic Members";
+    Myclass teststatic;
+
+    //we use general pointers to point static variables & functions both
+    int* localptr1 = &Myclass::e;
+    int* localptr2 = &Myclass::f;
+
+    teststatic.e = 1;
+    teststatic.f = 2;
+
+    std::cout << "\nBefore init static e = "<< Myclass::e <<" f = "<< Myclass::f;
+    std::cout << "\nBefore init static e = " << *localptr1 << " f = " << *localptr2;
+
+    Myclass::e = 11;
+    Myclass::f = 12;
+    std::cout << "\nAfter init static e = " << teststatic.e << " f = " << teststatic.f;
+    std::cout << "\nAfter init static e = " << *localptr1 << " f = " << *localptr2;
+
+
+
+
+
 }
