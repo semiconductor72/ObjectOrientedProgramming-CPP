@@ -131,4 +131,44 @@ int main()
    //Dynamic memory allocation for object
    Myclass* ptrtoMyclass1 = new Myclass;
    ptrtoMyclass1 = &teststatic;
+
+   //Placement new
+   //char buffer[sizeof(Myclass)];
+   //Myclass* obj = new (buffer) Myclass();  // Placement new places constructor at memory region you choose e.g stack, globally etc
+
+   //Smart Pointers
+   std::cout << "\n\n\nstarting of Smart pointers";
+   std::cout << "\nUnique pointers to single element";
+   std::unique_ptr<int> unqptr = std::make_unique<int>(5);
+   *unqptr = 78;
+   std::cout << "\nUnique Pointer value = " <<*unqptr;
+
+   //only 1 uniqueue pointer can own the resource if you have to 
+   //assign another pointer to same memory location then transfer the ownership
+   std::unique_ptr<int>movedptr = std::move(unqptr);
+   std::cout << "\nMoved owenership of Unique Pointer = " << *movedptr;
+
+   std::cout << "\nUnique pointers to array";
+   std::unique_ptr<int[]> uniqueptrarr = std::make_unique<int[]>(5);
+   uniqueptrarr[0] = 60;
+   int* rawptr1 = uniqueptrarr.get();
+   *(rawptr1 + 1) = 61;
+   uniqueptrarr[2] = 62;
+   uniqueptrarr[3] = 63;
+   uniqueptrarr[4] = 64;
+   std::cout << "\nUnique pointer array" << "\nuniqueptrarr[0] = " << uniqueptrarr[0] << "\nuniqueptrarr[1] = " << uniqueptrarr[1];
+
+   std::cout << "\n\nShared Pointer";
+   std::shared_ptr<int> sharedptr1 = std::make_shared<int>(1);
+   *sharedptr1 = 88;
+   std::shared_ptr<int> sharedptr2 = sharedptr1;
+   std::cout << "\nShared ptr values with" << "\nsharedptr1 = " << *sharedptr1 << "\nsharedptr2 = "<<*sharedptr2 <<"\nreference count = "<< sharedptr1.use_count();
+
+   //how to print char number value?
+   char ch = 70;
+   std::cout << "\n\n\nchar ch = " << ch << " raw num = " << int(ch);
+
+   
+
+   std::cout << "\n\n\n\n\n";
 }
