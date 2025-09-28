@@ -108,8 +108,27 @@ int main()
     std::cout << "\nAfter init static e = " << teststatic.e << " f = " << teststatic.f;
     std::cout << "\nAfter init static e = " << *localptr1 << " f = " << *localptr2;
 
+    //-----------------------------------------------------------------------------------
+    //Dynamic Memory Allocation
+    std::cout << "\n\n\nDynamic Memory Allocation";
+    std::cout << "\nDynamic Memory Allocation by using new of single element";
+   int *DynamicAllocation= new int(32);//you can assign value at the time of memory allocation
+   *DynamicAllocation = 45;
+   std::cout << "\nDynamic allocation value of single element = " << *DynamicAllocation;
+   delete DynamicAllocation;
 
+   //Dynamic memory allocation for array
+   std::cout << "\n\n\nDynamic Memory Allocation by using new of array";
+   int* arr = new int[5] {3,4,5,6,7};
+   arr[0] = 30;
+   arr[1] = 31;
+   arr[2] = 32;
+   arr[3] = 33;
+   arr[4] = 34;
+   std::cout << "\nArray values" << "\narr[0]" << arr[0] << "\narr[1]" << arr[1] << "\narr[2]" << arr[2] << "\narr[3]" << arr[3] << "\narr[4]" << arr[4];
+   delete[] arr;
 
-
-
+   //Dynamic memory allocation for object
+   Myclass* ptrtoMyclass1 = new Myclass;
+   ptrtoMyclass1 = &teststatic;
 }
