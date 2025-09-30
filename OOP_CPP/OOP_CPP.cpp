@@ -1,6 +1,36 @@
 #include <iostream>
 #include <string>
 
+class op_overloading {
+private:
+    int p = 48;
+public:
+
+    op_overloading(int def=0)
+    {
+        p = def;
+    }
+
+    //ReturnType operator<symboll>(arguments){context}
+    int operator*(int i)
+    {
+        std::cout << "\n\nOperator overloading performed";
+        return p*i;
+    }
+
+    op_overloading operator+(op_overloading& argum)
+    {
+        op_overloading dummy;
+        dummy.p = p + argum.p;
+        return dummy;
+    }
+
+    int getvalueofP(void)
+    {
+        return p;
+    }
+
+};
 
 class base1 {
 public:
@@ -289,5 +319,14 @@ int main()
    //Multiple Inheritance
    std::cout << "\nMultiple Inheritance";
 
+   //Operator Overloading
+   op_overloading ov1(5), ov2(8);
+   int temp1 = ov1 * 7;
+   std::cout << "\n\n\nOperator overloading";
+   std::cout << "\n overloaded value = "<< temp1;
+
+   //operator overloading for static pollymorphism
+   op_overloading add_result = ov1+ov2;
+   std::cout << "\nValue of P = " << add_result.getvalueofP();
    std::cout << "\n\n\n\n\n";
 }
