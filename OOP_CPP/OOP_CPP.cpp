@@ -2,6 +2,111 @@
 #include <string>
 
 
+class base1 {
+public:
+    int a;
+    int b;
+    base1()
+    {
+        a = 7;
+        b = 8;
+    }
+};
+
+class base2 {
+public:
+    int c;
+    int d;
+    base2()
+    {
+        c = 9;
+        d = 10;
+    }
+};
+
+/*Single inheritance : Single class is inheritated into single derived / child class
+class A
+class B:public A
+{
+}
+*/
+class SingleInheritance:public base1{
+public:
+    int get_valueofA(void)
+    {
+        return a;
+    }
+};
+
+/*Multiple inheritance : Multiple classes are inheritated into single derived / child class
+class A
+class B
+class C:public A,public B
+{
+
+}
+*/
+class MultipleInheritance :public base1, public base2 {
+public:
+    int get_valueofAplusD(void)
+    {
+        return a+d;
+    }
+};
+
+/*Multilevel inheritance : The already Inherited class gets inherite to another derived class
+class A
+class B:public A
+{
+
+}
+
+class C:public B
+{
+
+}
+A into B into C
+*/
+class Multilevel1 :public base1 {
+public:
+    int h = 13;
+    int get_valueofA(void)
+    {
+        return a;
+    }
+};
+
+class Multilevel2 :public Multilevel1 {
+public:
+    int get_valueofAplusH(void)
+    {
+        return a+h;
+    }
+};
+
+//Hierarcial inheritance : Multiple class get derived from single base class 
+//Here dervd1 and drvd2 are derived from base1 class
+class dervd1 :public base1 {
+
+};
+
+class dervd2 :public base1 {
+
+};
+
+//hybrid inheritance// the following example alsi illustraight the diamond problem
+class a :public base1 {
+
+};
+class b :public base1 {
+
+};
+
+class c :public a, public b {
+
+};
+
+
 class Myclass {
 private:
     int a;
@@ -168,7 +273,21 @@ int main()
    char ch = 70;
    std::cout << "\n\n\nchar ch = " << ch << " raw num = " << int(ch);
 
-   
+   //Inheritance
+   std::cout << "\n\n\nLets start the inheritance\nMejorly there are 4 types of inheritance";
+   std::cout << "\n1)Single Inheritance";
+   std::cout << "\n2)Multiple Inheritance";
+   std::cout << "\n3)Multilevel Inheritance";
+   std::cout << "\n4)Hierarchical Inheritance";
+   std::cout << "\n5)Hybrid Inheritance";
+
+   //Single Inheritance  Base class to Derived Class
+   std::cout << "\n\nSingle Inheritance";
+   SingleInheritance drvd;
+   std::cout << "\n a = "<< drvd.get_valueofA();
+
+   //Multiple Inheritance
+   std::cout << "\nMultiple Inheritance";
 
    std::cout << "\n\n\n\n\n";
 }
