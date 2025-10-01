@@ -1,6 +1,29 @@
 #include <iostream>
 #include <string>
 
+//this pointer class
+
+class thisptr {
+
+private:
+    static int counter;
+public:
+    thisptr& display(void)
+    {
+        counter++;
+        std::cout << "\nthis pointer example : "<< counter;
+        return *this;//by derefrancing this pointer we are returning current object
+    }
+
+    void show(void)
+    {
+        std::cout << "\ninside show";
+    }
+};
+
+int thisptr::counter = 0;
+
+
 //what is abstract class?
 //   --class has atleast 1 pure virtual function like virtual void speak() = 0; //Pure virtual function
 //   --you cant/should not define object for abstract class
@@ -429,6 +452,9 @@ int main()
    Abstractptr = &cc;
    Abstractptr->speak();
 
+   //this pointer
+   thisptr TP;
+   TP.display().display().display().show();
 
    std::cout << "\n\n\n\n\n";
 }
