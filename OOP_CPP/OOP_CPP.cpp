@@ -1,8 +1,30 @@
 #include <iostream>
 #include <string>
 
-//this pointer class
+//friend functions
+class studyfriends {
 
+private:
+    int a;
+    int b;
+
+public:
+    studyfriends(int c, int d)
+    {
+        a = c;
+        b = d;
+    }
+
+    friend void addition(studyfriends kk);
+};
+
+void addition(studyfriends kk)
+{
+    std::cout << "\nprivate members a = "<<kk.a;
+}
+
+
+//this pointer class
 class thisptr {
 
 private:
@@ -405,7 +427,6 @@ int main()
    //Multiple Inheritance
    std::cout << "\nMultiple Inheritance";
 
-
    //Pollymorphism
    std::cout << "\n\n\nPollymorphism";
    // -- Compile time pollymorphism/static pollymorphism/static binding -- it is achived by operator overloading or function overloading
@@ -455,6 +476,10 @@ int main()
    //this pointer
    thisptr TP;
    TP.display().display().display().show();
+
+   //friend functions
+   studyfriends sf(7, 5);
+   addition(sf);
 
    std::cout << "\n\n\n\n\n";
 }
