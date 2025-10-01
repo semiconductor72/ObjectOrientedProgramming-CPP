@@ -1,6 +1,69 @@
 #include <iostream>
 #include <string>
 
+//what is abstract class?
+//   --class has atleast 1 pure virtual function like virtual void speak() = 0; //Pure virtual function
+//   --you cant/should not define object for abstract class
+
+class Animal{
+public:
+    virtual void speak() = 0;//pure virtual function
+};
+
+class Dog :public Animal {
+public:
+    void speak() override
+    {
+        std::cout << "\nThis animal is Dog and it barks";
+    }
+};
+
+class Cat :public Animal {
+public:
+    void speak() override
+    {
+        std::cout << "\nThis animal is Cat and it Meuw";
+    }
+};
+
+
+//By default if access specifier is not used then its type is for class = private for struct = public
+
+class fn_ovrldng {
+public:
+    void printvalue(int a)
+    {
+        std::cout << "\nprovided value is int : "<<a;
+    }
+    void printvalue(float a)
+    {
+        std::cout << "\nprovided value is float :" << a;
+    }
+    void printvalue(std::string s)
+    {
+        std::cout << "\nprovided value is string : " << s;
+    }
+
+};
+
+
+//function overloading can be done outsie the class
+void printvalue(int value)
+{
+    std::cout << "\nProvided value is integer: " << value;
+}
+
+void printvalue(float value)
+{
+    std::cout << "\nProvided value is floating: " << value;
+}
+
+void printvalue(std::string value)
+{
+    std::cout << "\nProvided value is string: " << value;
+}
+
+//operator overloading has to be inside the class
 class op_overloading {
 private:
     int p = 48;
@@ -319,14 +382,53 @@ int main()
    //Multiple Inheritance
    std::cout << "\nMultiple Inheritance";
 
+
+   //Pollymorphism
+   std::cout << "\n\n\nPollymorphism";
+   // -- Compile time pollymorphism/static pollymorphism/static binding -- it is achived by operator overloading or function overloading
+   // 
    //Operator Overloading
+   //operator overloading has to be inside class/object
+   std::cout << "\n static Pollymorphism by Operator overloading";
    op_overloading ov1(5), ov2(8);
    int temp1 = ov1 * 7;
-   std::cout << "\n\n\nOperator overloading";
+   
    std::cout << "\n overloaded value = "<< temp1;
 
-   //operator overloading for static pollymorphism
+   //static pollymorphism by operator overloading
    op_overloading add_result = ov1+ov2;
    std::cout << "\nValue of P = " << add_result.getvalueofP();
+
+
+   //Function overloading
+   //Function overloading need not to be inside the class/object
+
+   printvalue(7);
+   printvalue(3.14f);
+   printvalue("\nSom");
+
+   //static pollymorphism by function overloading
+   std::cout << "\n static Pollymorphism by function overloading";
+   fn_ovrldng fn;
+   fn.printvalue(15);
+   fn.printvalue(2.8f);
+   fn.printvalue("\nEmbedded Systems");
+
+   //Dyanamic pollymorphism
+   //Dynamic pollymorphism by pure virtual function and function overriding
+   //--Inheritance is issensial for dynamic pollymorphism
+      //function overriding is different than function overloading
+   //function overriding is used in dynamic pollymorphism/runtime pollymorphism.
+
+   Animal* Abstractptr;
+   Dog dd;
+   Abstractptr = &dd;
+   Abstractptr->speak();
+
+   Cat cc;
+   Abstractptr = &cc;
+   Abstractptr->speak();
+
+
    std::cout << "\n\n\n\n\n";
 }
